@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmwkx8qvfxhno"]
+
+[ext_resource type="Script" uid="uid://xdcmixt4jvrg" path="res://scripts/GameManager.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://c7yk3r5j8qf2w" path="res://scenes/CookingStation.tscn" id="2_cooking"]
+[ext_resource type="PackedScene" uid="uid://b4hjk8l2m3n4p" path="res://scenes/UI.tscn" id="3_ui"]
+
+[node name="Main" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_main")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(540, 960)
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1080.0
+offset_bottom = 1920.0
+color = Color(0.95, 0.9, 0.85, 1)
+
+[node name="CookingStation" parent="." instance=ExtResource("2_cooking")]
+position = Vector2(540, 960)
+
+[node name="UI" parent="." instance=ExtResource("3_ui")]
+
+[connection signal="order_received" from="GameManager" to="CookingStation" method="start_new_order"]
+[connection signal="order_ready" from="CookingStation" to="GameManager" method="complete_order"]

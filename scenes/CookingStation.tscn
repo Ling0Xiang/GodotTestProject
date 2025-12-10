@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7yk3r5j8qf2w"]
+
+[ext_resource type="Script" uid="uid://cgymkiobtc71e" path="res://scripts/CookingStation.gd" id="1_station"]
+[ext_resource type="PackedScene" uid="uid://bcwnsdmgo556" path="res://scenes/CrepePan.tscn" id="2_pan"]
+[ext_resource type="PackedScene" uid="uid://bceyf742i48l7" path="res://scenes/WhippedCreamDispenser.tscn" id="3_cream"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_batter"]
+size = Vector2(150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_serving"]
+size = Vector2(200, 100)
+
+[node name="CookingStation" type="Node2D"]
+script = ExtResource("1_station")
+
+[node name="CrepePan" parent="." instance=ExtResource("2_pan")]
+position = Vector2(0, 100)
+
+[node name="BatterBowl" type="Area2D" parent="."]
+position = Vector2(-300, -200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BatterBowl"]
+shape = SubResource("RectangleShape2D_batter")
+
+[node name="BowlSprite" type="ColorRect" parent="BatterBowl"]
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+mouse_filter = 2
+color = Color(0.8, 0.6, 0.4, 1)
+
+[node name="Label" type="Label" parent="BatterBowl"]
+offset_left = -50.0
+offset_top = -10.0
+offset_right = 50.0
+offset_bottom = 10.0
+text = "BATTER"
+horizontal_alignment = 1
+
+[node name="Plate" type="Area2D" parent="."]
+position = Vector2(300, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plate"]
+shape = SubResource("RectangleShape2D_batter")
+
+[node name="PlateSprite" type="ColorRect" parent="Plate"]
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+mouse_filter = 2
+
+[node name="CrepeOnPlate" type="ColorRect" parent="Plate"]
+visible = false
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+color = Color(0.9, 0.8, 0.6, 1)
+
+[node name="WhippedCreamDispenser" parent="." instance=ExtResource("3_cream")]
+position = Vector2(300, -200)
+
+[node name="ServingArea" type="Area2D" parent="."]
+position = Vector2(0, 400)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ServingArea"]
+shape = SubResource("RectangleShape2D_serving")
+
+[node name="ServingSprite" type="ColorRect" parent="ServingArea"]
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+mouse_filter = 2
+color = Color(0.4, 0.7, 0.4, 1)
+
+[node name="Label" type="Label" parent="ServingArea"]
+offset_left = -50.0
+offset_top = -10.0
+offset_right = 50.0
+offset_bottom = 10.0
+text = "SERVE"
+horizontal_alignment = 1
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InstructionLabel" type="Label" parent="UI"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1040.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 32
+text = "Waiting for order..."
+horizontal_alignment = 1
+vertical_alignment = 1

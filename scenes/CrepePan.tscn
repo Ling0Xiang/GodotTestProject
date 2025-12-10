@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcwnsdmgo556"]
+
+[ext_resource type="Script" uid="uid://c77qx5tq2mv45" path="res://scripts/CrepePan.gd" id="1_pan"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pan"]
+radius = 100.0
+
+[node name="CrepePan" type="Node2D"]
+script = ExtResource("1_pan")
+
+[node name="PanArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanArea"]
+shape = SubResource("CircleShape2D_pan")
+
+[node name="PanSprite" type="Polygon2D" parent="."]
+color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(-100, 0, -90, -30, -70, -50, -40, -70, 0, -80, 40, -70, 70, -50, 90, -30, 100, 0, 90, 30, 70, 50, 40, 70, 0, 80, -40, 70, -70, 50, -90, 30)
+
+[node name="BatterSprite" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0.95, 0.8, 0.5)
+polygon = PackedVector2Array(-80, 0, -70, -25, -55, -40, -30, -55, 0, -60, 30, -55, 55, -40, 70, -25, 80, 0, 70, 25, 55, 40, 30, 55, 0, 60, -30, 55, -55, 40, -70, 25)
+
+[node name="CrepeSprite" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.9, 0.8, 0.6, 1)
+polygon = PackedVector2Array(-80, 0, -70, -25, -55, -40, -30, -55, 0, -60, 30, -55, 55, -40, 70, -25, 80, 0, 70, 25, 55, 40, 30, 55, 0, 60, -30, 55, -55, 40, -70, 25)
+
+[node name="SpreadIndicator" type="Label" parent="."]
+visible = false
+offset_left = -80.0
+offset_top = -120.0
+offset_right = 80.0
+offset_bottom = -90.0
+text = "Drag to spread!"
+horizontal_alignment = 1
