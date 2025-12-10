@@ -9,6 +9,7 @@ size = Vector2(120, 180)
 script = ExtResource("1_cream")
 
 [node name="DispenserArea" type="Area2D" parent="."]
+input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DispenserArea"]
 shape = SubResource("RectangleShape2D_dispenser")

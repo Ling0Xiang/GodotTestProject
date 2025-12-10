@@ -25,6 +25,7 @@ var has_crepe_on_plate = false
 signal order_ready
 
 func _ready():
+	print("CookingStation ready! Current step: ", current_step)
 	batter_bowl.input_event.connect(_on_batter_bowl_input)
 	plate.input_event.connect(_on_plate_input)
 	serving_area.input_event.connect(_on_serving_area_input)
@@ -33,6 +34,10 @@ func _ready():
 	cream_dispenser.cream_complete.connect(_on_cream_complete)
 
 	update_instruction()
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		print("Global input detected at: ", event.position)
 
 func start_new_order(order_type):
 	current_step = CookingStep.POUR_BATTER
